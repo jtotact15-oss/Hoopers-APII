@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: hoopers-key-login
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: CLIENT_ID
+        sync: false
+      - key: GUILD_ID
+        sync: false
+      - key: ADMIN_USER_IDS
+        sync: false
+      - key: ADMIN_API_SECRET
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hoopers-postgres
+          property: connectionString
+      - key: DATABASE_SSL
+        value: "true"
+      - key: DB_POOL_MAX
+        value: "10"
+databases:
+  - name: hoopers-postgres
+    plan: basic-256mb
+    databaseName: hoopers
+    user: hoopers_app

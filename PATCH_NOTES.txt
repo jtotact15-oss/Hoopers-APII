@@ -1,0 +1,10 @@
+Hoopers key-system patch
+
+Fixed:
+- /login now checks the license linked to the account.
+- Disabled license keys can no longer be used to log in.
+- Expiration is checked against the license as well as the account.
+- /session now checks the linked license, so disabled keys cannot keep an existing session alive.
+- /disablekey immediately deletes active sessions belonging to the disabled key.
+
+No Discord token, database password, or other secret is included in this patch.
